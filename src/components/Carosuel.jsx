@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { slides } from "../constants";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Carosuel = () => {
+  const [currentSlide, SetCurrentSilde] = useState(0);
+  const prevSilder = () => {
+    SetCurrentSilde(
+      (prev) => (prev - 1 + (slides.length - 1)) % (slides.length - 1)
+    );
+  };
+  const nextSilder = () => {
+    SetCurrentSilde((prev) => (prev + 1) % (slides.length - 1));
+  };
+  useGSAP(() => {
+    gsap.to(".slider-item", {
+      x: `-${currentSlide * 63}vw`,
+      opacity: 1,
+      duration: 1.2,
+      ease: "expo.out",
+    });
+    gsap.fromTo(
+      `.slider-item:nth-child(${currentSlide + 2}) img`,
+      { scale: 2 },
+      { scale: 1, duration: 1.5, ease: "power2.out" }
+    );
+  }, [currentSlide]);
   return (
     <div className="relative">
       <div className="w-full relative lg:h-[40vh] h-[60vh]">
@@ -34,12 +58,12 @@ const Carosuel = () => {
           </div>
         </div>
       </div>
-      <div className="mt-10 text-white-50 flex justify-end gap-5">
-        <div className="border rounded-full ">
-          <img src="/images/caretLeft.svg" alt="left" className="w-5 h-5" />
+      <div className="mt-10 md:mt-40 text-white-50 flex justify-end gap-5 md:-translate-x-32 -translate-x-5">
+        <div onClick={prevSilder} className="border rounded-full bg-black-200">
+          <img src="/images/CaretLeft.svg" alt="left" className="w-10 h-10" />
         </div>
-        <div className="">
-          <img src="/images/caretRight.svg" alt="left" className="w-5 h-5" />
+        <div onClick={nextSilder} className="border rounded-full bg-black-200">
+          <img src="/images/CaretRight.svg" alt="left" className="w-10 h-10" />
         </div>
       </div>
     </div>

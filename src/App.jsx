@@ -1,3 +1,4 @@
+import Testimoials from "./sections/Testimoials";
 import About from "./sections/About";
 import Hero from "./sections/Hero";
 import Project from "./sections/Project";
@@ -10,6 +11,7 @@ function App() {
       <About />
       <TechStack />
       <Project />
+      <Testimoials />
     </div>
   );
 }

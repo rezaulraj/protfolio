@@ -282,15 +282,30 @@ section {
     filter: blur(150px);
   }
   .testimonial-sphere-1 {
-    background: radial-gradient(circle, #ff28d5, #ff28d5);
-    bottom: 300px;
-    right: 100px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 40, 213, 0.7) 0%,
+      rgba(255, 140, 230, 0.4) 40%,
+      rgba(255, 200, 250, 0.15) 70%,
+      rgba(255, 40, 213, 0) 90%
+    );
+    top: -100px;
+    left: 300px;
+    filter: blur(200px);
+    animation: wander-left 10s ease-in-out infinite;
   }
   .testimonial-sphere-2 {
-    background: radial-gradient(circle, #1c34ff, #1c34ff);
-    bottom: 100px;
-    right: 0px;
-    animation: wander-right 16s ease-in-out infinite;
+    background: radial-gradient(
+      circle,
+      rgba(28, 52, 255, 0.7) 0%,
+      rgba(100, 150, 255, 0.4) 40%,
+      rgba(200, 220, 255, 0.15) 70%,
+      rgba(28, 52, 255, 0) 90%
+    );
+    top: 100px;
+    right: 300px;
+    filter: blur(220px);
+    animation: wander-right 12s ease-in-out infinite;
   }
   /* nav-side-bar */
   .side-bar-bg {

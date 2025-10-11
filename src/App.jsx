@@ -3,6 +3,7 @@ import About from "./sections/About";
 import Hero from "./sections/Hero";
 import Project from "./sections/Project";
 import TechStack from "./sections/TechStack";
+import Contact from "./sections/Contact";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <TechStack />
       <Project />
       <Testimoials />
+      <Contact />
     </div>
   );
 }

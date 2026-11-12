@@ -110,7 +110,7 @@ const Carosuel = () => {
             return (
               <div
                 key={p.title + i}
-                className="c-slide relative h-[55vh] w-[85vw] shrink-0 overflow-hidden rounded-3xl border border-white/10 md:h-[65vh] md:w-[60vw]"
+                className="c-slide relative aspect-[4/5] w-[85vw] shrink-0 overflow-hidden rounded-2xl border border-white/10 sm:aspect-[4/3] sm:w-[75vw] md:rounded-3xl lg:aspect-[16/9] lg:w-[62vw] 2xl:w-[56vw]"
                 data-cursor={active ? "View" : "Drag"}
                 onClick={() => !active && !dragged.current && setCurrent(i)}
               >

@@ -57,11 +57,11 @@ const Preloader = () => {
       {/* stacked panels give the curtain a layered wipe */}
       <div className="pl-panel absolute inset-0 bg-linear-to-r from-pink-100 via-violet to-blue-50" />
       <div className="pl-panel absolute inset-0 flex flex-col justify-between bg-ink p-6 md:p-12">
-        <div className="flex gap-3 overflow-hidden md:gap-6">
+        <div className="flex flex-wrap gap-x-3 overflow-hidden md:gap-x-6">
           {words.map((w, i) => (
             <span
               key={w}
-              className="pl-word block text-4xl font-bold uppercase text-white md:text-7xl"
+              className="pl-word block text-4xl font-bold uppercase text-white sm:text-5xl lg:text-7xl"
             >
               {w}
               {i < words.length - 1 && <span className="text-pink-100">.</span>}
@@ -70,12 +70,12 @@ const Preloader = () => {
         </div>
         <div>
           <div className="flex items-end justify-between overflow-hidden">
-            <span className="pl-count block font-serif text-2xl italic text-primary md:text-3xl">
+            <span className="pl-count hidden font-serif text-2xl italic text-primary sm:block md:text-3xl">
               Rezaul Karim — Portfolio
             </span>
             <span
               ref={count}
-              className="pl-count block font-mono text-6xl font-medium text-white md:text-[9rem] md:leading-none"
+              className="pl-count ml-auto block font-mono text-6xl font-medium text-white md:text-8xl lg:text-[9rem] lg:leading-none"
             >
               000
             </span>

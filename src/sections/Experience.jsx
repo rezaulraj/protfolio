@@ -31,17 +31,17 @@ const Experience = () => {
         <TitleHeader title="Work" accent="experience" text="Where I've been" number="02" />
 
         <div className="timeline relative mt-16 md:mt-24">
-          <div className="absolute bottom-0 left-[11px] top-2 w-px bg-white/10 md:left-[calc(33.333%+11px)]">
+          <div className="absolute bottom-0 left-[11px] top-2 w-px bg-white/10 lg:left-[calc(33.333%+11px)]">
             <div className="timeline-progress h-full w-full origin-top bg-linear-to-b from-pink-100 via-violet to-blue-50" />
           </div>
 
           {experiences.map((exp) => (
             <div
               key={exp.company}
-              className="relative grid gap-4 pb-14 pl-12 last:pb-0 md:grid-cols-3 md:gap-0 md:pl-0"
+              className="relative grid gap-4 pb-14 pl-12 last:pb-0 md:pl-14 lg:grid-cols-3 lg:gap-0 lg:pl-0"
             >
               {/* meta */}
-              <div className="reveal md:pr-16 md:text-right">
+              <div className="reveal lg:pr-16 lg:text-right">
                 <p className="font-mono text-sm text-pink-100">{exp.period}</p>
                 <p className="mt-2 text-2xl font-medium text-white">{exp.company}</p>
                 <p className="mt-1 text-sm">{exp.location}</p>
@@ -58,7 +58,7 @@ const Experience = () => {
               </div>
 
               {/* dot */}
-              <span className="absolute left-0 top-1 flex-center size-6 rounded-full border border-white/20 bg-ink md:left-[33.333%]">
+              <span className="absolute left-0 top-1 flex-center size-6 rounded-full border border-white/20 bg-ink lg:left-[33.333%]">
                 <span
                   className={`size-2.5 rounded-full ${
                     exp.current ? "bg-emerald-400 shadow-[0_0_14px_#34d399]" : "bg-violet"
@@ -67,7 +67,7 @@ const Experience = () => {
               </span>
 
               {/* card */}
-              <div className="reveal card p-7 md:col-span-2 md:ml-16 md:p-9">
+              <div className="reveal card p-6 sm:p-7 md:p-9 lg:col-span-2 lg:ml-16">
                 <div className="flex flex-wrap items-center gap-3">
                   <h3 className="text-2xl font-medium text-white md:text-3xl">{exp.role}</h3>
                   {exp.current && (

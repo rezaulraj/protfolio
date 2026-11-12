@@ -57,7 +57,7 @@ const Hero = () => {
         <p className="hero-fade font-mono text-sm uppercase tracking-[0.3em] text-primary">
           Hi, I'm
         </p>
-        <h1 className="mt-3 text-[18vw] font-bold uppercase leading-[0.85] tracking-tight md:text-[9rem] lg:text-[10.5rem]">
+        <h1 className="mt-3 text-[18vw] font-bold uppercase leading-[0.85] tracking-tight sm:text-[16vw] md:text-[8rem] lg:text-[9.5rem] xl:text-[10.5rem]">
           <span className="block overflow-hidden">
             <span className="hero-line block">{personal.firstName}</span>
           </span>
@@ -66,11 +66,11 @@ const Hero = () => {
           </span>
         </h1>
 
-        <p className="hero-fade mt-6 min-h-[1.2em] font-serif text-4xl italic md:text-6xl">
+        <p className="hero-fade mt-6 min-h-[1.2em] font-serif text-4xl italic sm:text-5xl lg:text-6xl">
           <Typewriter words={personal.roles} />
         </p>
 
-        <p className="hero-fade mt-6 max-w-xl text-lg leading-relaxed text-primary md:text-xl">
+        <p className="hero-fade mt-6 max-w-xl text-base leading-relaxed text-primary sm:text-lg md:text-xl">
           {personal.intro}
         </p>
 
@@ -107,7 +107,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="hero-fade mt-16 grid max-w-2xl grid-cols-3 divide-x divide-white/10 border-y border-white/10">
+        <div className="hero-fade mt-12 grid max-w-2xl md:mt-16 grid-cols-3 divide-x divide-white/10 border-y border-white/10">
           {stats.map((s) => (
             <div key={s.label} className="py-5 pl-4 first:pl-0 md:pl-6">
               <Counter

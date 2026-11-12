@@ -37,7 +37,7 @@ const About = () => {
 
         <div className="mt-14 grid grid-cols-12 gap-4 md:mt-20 md:gap-5">
           {/* intro */}
-          <div className="reveal card col-span-12 flex flex-col justify-between p-7 md:col-span-7 md:p-10">
+          <div className="reveal card col-span-12 flex flex-col justify-between p-7 md:p-10 lg:col-span-7">
             <div>
               <p className="eyebrow">Hello there 👋</p>
               <h3 className="mt-5 text-3xl font-medium leading-tight text-white md:text-[2.6rem]">
@@ -64,7 +64,7 @@ const About = () => {
           </div>
 
           {/* 3D alien */}
-          <div className="reveal col-span-12 h-72 cursor-grab overflow-hidden rounded-3xl bg-lime md:col-span-5 md:h-auto md:min-h-[420px]">
+          <div className="reveal col-span-12 h-72 cursor-grab overflow-hidden rounded-3xl bg-lime sm:h-96 lg:col-span-5 lg:h-auto lg:min-h-[420px]">
             <div className="relative h-full w-full">
               <p className="absolute left-6 top-6 z-10 font-mono text-xs uppercase tracking-[0.25em] text-ink/70">
                 Drag me ↻
@@ -77,37 +77,41 @@ const About = () => {
           </div>
 
           {/* location + time */}
-          <div className="reveal card col-span-12 p-7 sm:col-span-6 md:col-span-4">
+          <div className="reveal card col-span-12 p-7 sm:col-span-6 lg:col-span-4">
             <div className="flex items-center justify-between">
               <p className="eyebrow">Based in</p>
               <Icon name="pin" className="size-5 text-pink-100" />
             </div>
             <p className="mt-6 text-3xl font-medium text-white">Dhaka,</p>
             <p className="text-3xl font-medium text-white">{personal.country}</p>
-            <div className="mt-6 flex items-center gap-2 text-sm">
+            <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
               <Icon name="clock" className="size-4" />
-              Local time · <LocalClock /> (GMT+6)
+              <span>Local time</span>
+              <span className="text-white">
+                <LocalClock />
+              </span>
+              <span>(GMT+6)</span>
             </div>
           </div>
 
           {/* currently */}
-          <div className="reveal card col-span-12 p-7 sm:col-span-6 md:col-span-4">
+          <div className="reveal card col-span-12 p-7 sm:col-span-6 lg:col-span-4">
             <div className="flex items-center justify-between">
               <p className="eyebrow">Currently</p>
               <Icon name="briefcase" className="size-5 text-blue-50" />
             </div>
-            <p className="mt-6 text-3xl font-medium text-white">{personal.role}</p>
+            <p className="mt-6 text-2xl font-medium text-white md:text-3xl">{personal.role}</p>
             <p className="mt-2 text-lg">@ {personal.currentCompany}</p>
             <p className="mt-6 text-sm">Since January 2025</p>
           </div>
 
           {/* languages */}
-          <div className="reveal card col-span-12 p-7 md:col-span-4">
+          <div className="reveal card col-span-12 p-7 lg:col-span-4">
             <p className="eyebrow">Languages</p>
             <div className="mt-6 space-y-6">
               {languages.map((l) => (
                 <div key={l.name}>
-                  <div className="flex items-baseline justify-between">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-3">
                     <span className="text-xl font-medium text-white">{l.name}</span>
                     <span className="text-sm">{l.level}</span>
                   </div>
@@ -123,7 +127,7 @@ const About = () => {
           </div>
 
           {/* motivation */}
-          <div className="reveal card col-span-12 p-7 md:col-span-7 md:p-10">
+          <div className="reveal card col-span-12 p-7 md:p-10 lg:col-span-7">
             <p className="eyebrow">What drives me</p>
             <ul className="mt-6 grid gap-4 sm:grid-cols-2">
               {motivation.map((m, i) => (
@@ -136,7 +140,7 @@ const About = () => {
           </div>
 
           {/* hobbies */}
-          <div className="reveal card col-span-12 p-7 md:col-span-5 md:p-10">
+          <div className="reveal card col-span-12 p-7 md:p-10 lg:col-span-5">
             <p className="eyebrow">Off the keyboard</p>
             <div className="mt-6 flex flex-wrap gap-3">
               {hobbies.map((h) => (
@@ -155,7 +159,7 @@ const About = () => {
               href={s.href}
               target="_blank"
               rel="noreferrer"
-              className="reveal card group col-span-12 flex items-center justify-between p-6 sm:col-span-4 md:p-7"
+              className="reveal card group col-span-12 flex items-center justify-between gap-3 p-6 sm:col-span-6 sm:last:col-span-12 md:p-7 lg:col-span-4 lg:last:col-span-4"
             >
               <div className="flex min-w-0 items-center gap-4">
                 <span className="flex-center size-12 shrink-0 rounded-2xl bg-white/5 text-white">

@@ -4,8 +4,8 @@ Command: npx gltfjsx@6.5.3 boy.glb -T
 Files: boy.glb [1.08MB] > E:\portfolio\public\models\boy-transformed.glb [495.53KB] (54%)
 */
 
-import React, { useEffect, useRef, useState } from "react";
-import { events, useGraph } from "@react-three/fiber";
+import React, { useRef, useState } from "react";
+import { useGraph } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import * as THREE from "three";
@@ -43,7 +43,6 @@ export function HeroBoy(props) {
         const target = new THREE.Vector3(mouse.current.x, mouse.current.y, 0.5);
         group.current.getObjectByName("Head")?.lookAt(target);
         group.current.rotation.y = target.x * 0.5;
-        console.log("event", group);
       };
 
       window.addEventListener("mousemove", handleMouseMove);

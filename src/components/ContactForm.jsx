@@ -1,115 +1,92 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Icon from "./Icons";
+import { personal } from "../constants";
+
+const contactFormSchema = Z.object({
+  name: Z.string().trim().min(1, "Name is required"),
+  email: Z.string().trim().min(1, "Email is required").email("Invalid email"),
+  subject: Z.string().trim().min(1, "Subject is required"),
+  message: Z.string().trim().min(10, "Message should be at least 10 characters"),
+});
+
+const fields = [
+  { id: "name", label: "Your name", placeholder: "John Doe", type: "text", half: true },
+  { id: "email", label: "Email", placeholder: "john@company.com", type: "email", half: true },
+  { id: "subject", label: "Subject", placeholder: "Project, job offer, collaboration…", type: "text" },
+];
+
 const ContactForm = () => {
-  const initalValues = {
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  };
-
-  const contactFormSchema = Z.object({
-    name: Z.string().nonempty("Name is Required"),
-    email: Z.string().email("Invalid Email").nonempty("Email is Required"),
-    subject: Z.string().nonempty("Subject is Required"),
-    message: Z.string().nonempty("Message is Required"),
-  });
-
+  const [sent, setSent] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm({
-    defaultValues: initalValues,
+    defaultValues: { name: "", email: "", subject: "", message: "" },
     resolver: zodResolver(contactFormSchema),
   });
 
-  const [loading,setLoading]=useState(false)
-  
-  const onSubmit = async (data) => {
-    console.log(data);
+  // No backend yet: open the visitor's email app with everything pre-filled.
+  const onSubmit = async ({ name, email, subject, message }) => {
+    const body = `${message}\n\n— ${name} (${email})`;
+    window.location.href = `mailto:${personal.email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    setSent(true);
+    reset();
   };
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
   return (
-    <div className="flex items-center justify-center">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full text-[#a7a7a7] flex flex-col gap-7"
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="grid grid-cols-2 gap-5">
+      {fields.map((f) => (
+        <div key={f.id} className={f.half ? "col-span-2 sm:col-span-1" : "col-span-2"}>
+          <label htmlFor={f.id} className="label">
+            {f.label}
+          </label>
+          <input
+            {...register(f.id)}
+            id={f.id}
+            type={f.type}
+            placeholder={f.placeholder}
+            className="input"
+            aria-invalid={!!errors[f.id]}
+          />
+          {errors[f.id] && <p className="mt-1.5 text-sm text-pink-100">{errors[f.id].message}</p>}
+        </div>
+      ))}
+      <div className="col-span-2">
+        <label htmlFor="message" className="label">
+          Message
+        </label>
+        <textarea
+          {...register("message")}
+          id="message"
+          rows={5}
+          placeholder="Tell me a little about what you have in mind…"
+          className="input resize-none"
+          aria-invalid={!!errors.message}
+        />
+        {errors.message && <p className="mt-1.5 text-sm text-pink-100">{errors.message.message}</p>}
+      </div>
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="btn-primary col-span-2 justify-center py-4 disabled:opacity-60"
       >
-        <div className="">
-          <label htmlFor="name" className="label">
-            Name
-          </label>
-          <input
-            {...register("name")}
-            type="text"
-            id="name"
-            placeholder="Jone Deo"
-            className="input"
-          />
-          {errors?.name && (
-            <span className="text-red-500">{errors?.name?.message}</span>
-          )}
-        </div>
-        <div className="">
-          <label htmlFor="email" className="label">
-            Email Address
-          </label>
-          <input
-            {...register("email")}
-            type="email"
-            id="email"
-            placeholder="hi@gmail.com"
-            className="input"
-          />
-          {errors?.email && (
-            <span className="text-red-500">{errors?.email?.message}</span>
-          )}
-        </div>
-        <div className="">
-          <label htmlFor="subject" className="label">
-            Subject
-          </label>
-          <input
-            {...register("subject")}
-            type="text"
-            id="subject"
-            placeholder="Why Contact Me"
-            className="input"
-          />
-          {errors?.subject && (
-            <span className="text-red-500">{errors?.subject?.message}</span>
-          )}
-        </div>
-        <div className="">
-          <label htmlFor="message" className="label">
-            Message
-          </label>
-          <textarea
-            {...register("message")}
-            type="text"
-            id="message"
-            placeholder="Say Hello"
-            rows={"5"}
-            className="input"
-          />
-          {errors?.message && (
-            <span className="text-red-500">{errors?.message?.message}</span>
-          )}
-        </div>
-        <button
-          type="submit"
-          className="w-full py-4 bg-blue-50 text-white-50 font-semibold rounded-md hover:bg-blue-600 transition-all duration-300 cursor-pointer"
-        >
-          Send Inquiry
-        </button>
-      </form>
-    </div>
+        <span>{isSubmitting ? "Sending…" : "Send message"}</span>
+        <Icon name="send" className="size-4" />
+      </button>
+      {sent && (
+        <p className="col-span-2 text-center text-sm text-emerald-300">
+          Your email app should open now — thanks for reaching out!
+        </p>
+      )}
+    </form>
   );
 };
 

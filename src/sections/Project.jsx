@@ -1,29 +1,35 @@
-import React from "react";
-import GradientSpheres from "../components/GradientSpheres";
 import TitleHeader from "../components/TitleHeader";
 import Carosuel from "../components/Carosuel";
+import Magnetic from "../components/Magnetic";
+import Icon from "../components/Icons";
+import { personal } from "../constants";
 
 const Project = () => {
   return (
-    <section
-      className="w-full h-full relative"
-      id="projects"
-    >
-      <GradientSpheres
-        sphere1Class={"projects-gradient-sphere projects-sphere-1"}
-        sphere2Class={"projects-gradient-sphere projects-sphere-2"}
+    <section id="projects" className="relative py-24 md:py-36">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/4 top-40 size-[500px] rounded-full bg-pink-100/10 blur-[150px]"
       />
-      <div className="w-full md:my-20 my-10 relative z-10">
-        <div className="container mx-auto md:p-0 px-5">
-          <TitleHeader
-            title={"My Projects"}
-            number={"03"}
-            text={"Check my recent project below for your Goal"}
-          />
-        </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-1/4 top-80 size-[500px] rounded-full bg-blue-50/10 blur-[150px]"
+      />
+      <div className="wrap relative">
+        <TitleHeader title="My" accent="projects" text="Recent work" number="04" />
       </div>
-      <div className="md:mt-20 mt-10">
+
+      <div className="reveal relative mt-14 md:mt-20">
         <Carosuel />
+      </div>
+
+      <div className="reveal mt-14 flex justify-center">
+        <Magnetic>
+          <a href={personal.github} target="_blank" rel="noreferrer" className="btn-ghost">
+            <Icon name="github" className="size-5" />
+            See more on GitHub
+          </a>
+        </Magnetic>
       </div>
     </section>
   );

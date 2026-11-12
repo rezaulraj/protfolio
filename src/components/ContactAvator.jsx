@@ -16,10 +16,8 @@ export function ContactAvator(props) {
   const { nodes, materials } = useGraph(clone);
 
   const { animations } = useFBX("/models/Wave Hip Hop Dance.fbx");
-  console.log(animations);
   animations[0].name = "Dance";
   const action = useAnimations(animations, group);
-  console.log(action);
   useEffect(() => {
     action.actions["Dance"].play();
   }, []);
